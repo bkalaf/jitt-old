@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "src/**/*.ts", "src/**/*.tsx"
+  ],
+  "compilerOptions": {
+    /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "baseUrl": "./",
+    /* Base directory to resolve non-absolute module names. */
+    "paths": {
+      "@components/*": ["/src/components/*"],
+      "@HOCs/*": ["src/components/functions/*"],
+      "@core/*": ["src/core/*"],
+      "@core": ["src/core/"],
+      "@enums/*": ["src/components/enums/*"],
+      "@fp/*": ["src/fp/*"],
+      "@firebase/*": ["src/firebase/*"],
+      "@monads/*": ["src/monads/*"],
+      "@appDomain/*": ["src/appDomain/*"],
+      "@ORM/*": ["src/ORM/*"],
+      "@DTOs/*": ["src/DTOs/*"],
+      "@events/*": ["src/events/*"]
+    }
+  }
+}

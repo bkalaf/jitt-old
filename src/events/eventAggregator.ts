@@ -1,34 +1,7 @@
-import { ObjectFlags } from "typescript";
+import hasProp from '@core/hasProp';
+import { createGUID } from './createGUID';
 import uuid from "./uuid";
 
-const OnAuthChanged = 'on-auth-changed';
-const OnProfileChanged = 'on-profile-changed';
-type EventHandler = (...args: any[]) => void;
-interface IDataType<T extends string, TType extends string, TBacking extends string> {
-    _type: TType;
-    _backing: TBacking;
-    value: T; 
-}
-interface GUID extends IDataType<string, 'GUID', 'string'> {
-};
-type Unsubscribe = () => void;
-function hasProp<T>(propName: keyof T, obj: T) {
-  return Object.getOwnPropertyNames(obj).includes(propName.toString());
-}
-function isUndef(item: unknown): item is undefined {
-    return typeof item === 'undefined';
-}
-function createGUID(value: string = undefined): GUID {
-    return isUndef(value) ? { 
-        _type: 'GUID',
-        _backing: 'string',
-        value: uuid()
-    } : { 
-        _type: 'GUID',
-        _backing: 'string',
-        value
-    }
-}
 
 export default class EventAggregator {
   #registry: { [key: string]: { [key: string]: EventHandler } };
@@ -49,7 +22,7 @@ export default class EventAggregator {
       ? hasProp(guid.value, this.#registry[eventName])
       : false;
   }
-  subscribe(eventName: string, handler: EventHandler) {
+  subscribe(eventName: string, handler: EventHandler): Unsubscribe {
     const id = uuid();
     if (this.hasEvent(eventName))  {
         this.#registry[eventName][id] = handler; 
@@ -80,11 +53,11 @@ export default class EventAggregator {
   }
 }
 
-const ea = new EventAggregator();
-ea.subscribe(OnAuthChanged, () => console.log('onAuthChanged'));
-const unsub1 = ea.subscribe(OnAuthChanged, () => console.log('authChange: unsub1'));
-ea.subscribe(OnProfileChanged, () => console.log('onProfileChanged'));
-const unsub2 = ea.subscribe(OnProfileChanged, () => console.log('profileChange: unsub2'));
+// const ea = new EventAggregator();
+// ea.subscribe(OnAuthChanged, () => console.log('onAuthChanged'));
+// const unsub1 = ea.subscribe(OnAuthChanged, () => console.log('authChange: unsub1'));
+// ea.subscribe(OnProfileChanged, () => console.log('onProfileChanged'));
+// const unsub2 = ea.subscribe(OnProfileChanged, () => console.log('profileChange: unsub2'));
 
-ea.trigger(OnAuthChanged);
-ea.trigger(OnProfileChanged);
+// ea.trigger(OnAuthChanged);
+// ea.trigger(OnProfileChanged);

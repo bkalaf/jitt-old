@@ -16,5 +16,9 @@ const firebaseConfig = {
 export const app = firebase.initializeApp(firebaseConfig);
 
 export const FirebaseContext = React.createContext({
-    app
+    app,
+    auth: app.auth(),
+    firestore: app.firestore(),
+    messaging: app.messaging(),
+    storage: app.storage()
 });

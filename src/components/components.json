@@ -1,0 +1,62 @@
+{
+    "root": {
+        "elements": {
+            "Block": [
+                ["div"], "block"
+            ],
+            "Box": [
+                ["div"], "box"
+            ],
+            "Content": [
+                ["dl", "ol", "ul", "p", "h1", "h2", "h3",
+                    "h4", "h5", "h6", "em", "strong", "table", "th", "tr",
+                    "td", "blockquote"
+                ], "content", {
+                    "olBulletType": [
+                        "is-lower-alpha",
+                        "is-upper-alpha",
+                        "is-lower-roman",
+                        "is-upper=roman"
+                    ],
+                    "size": 3
+                }
+            ],
+            "Delete": [
+                ["button"], "delete", {
+                    "size": 3
+                }
+            ],
+            "Icon": [
+                ["span", "div"], "icon", {
+                    "children": {
+                        "i": {
+                            "className": "fas"
+                        }
+                    },
+                    "textColor": "",
+                    "size": 3,
+                    "faSize": ["fa-lg", "fa-2x", "fa-1x"],
+                    "fixedWidth": "fa-fw",
+                    "spin": "fa-spinner",
+                    "pulse": "fa-pulse",
+                    "stack": {
+                        "0": "fa-stack",
+                        "1": "fa-1x",
+                        "2": "fa-2x"
+                    },
+                    "border": "fa-border",
+                    "inverse": "fa-inverse"
+                }
+            ],
+            "IconText": [
+                ["span", "div"], "", {
+                    "children": "text"
+                }
+            ],
+            "IconTextContainer": [
+                ["span", "div"], "icon-text", {}
+            ]
+
+        }
+    }
+}
